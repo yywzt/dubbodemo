@@ -14,8 +14,8 @@ public class TestHelloService{
 
     @Reference(
             version = "${demo.service.version}",
-            application = "${dubbo.application.id}",
-            url = "dubbo://localhost:20800")
+            application = "${dubbo.application.id}")
+//    ,            url = "dubbo://localhost:20800")
     private HelloService helloService;
 
     public String test(String name){

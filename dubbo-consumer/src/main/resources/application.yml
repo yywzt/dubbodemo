@@ -11,8 +11,10 @@ dubbo:
     id: dubbo
     name: dubbo
     port: 20800
-  #服务暴露与发现消费所在的package
-#  scan: com.example.service
+  registry:
+    #注册中心配置，用于配置连接注册中心相关信息。
+    id: zookeeper
+    address: zookeeper://127.0.0.1:2181
 
 demo:
   service:
