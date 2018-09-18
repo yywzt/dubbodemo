@@ -17,7 +17,9 @@ public class HelloController {
     TestHelloService testHelloService;
 
     @RequestMapping("/test")
-    public void test(){
-        testHelloService.test("123");
+    public String test(){
+        String test = testHelloService.test("123");
+        System.out.println(test);
+        return test;
     }
 }

@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 @Service("testHelloService")
 public class TestHelloService{
 
-    @Reference(version = "1.0.0")
-    HelloService helloService;
+    @Reference(
+            version = "${demo.service.version}",
+            application = "${dubbo.application.id}",
+            url = "dubbo://localhost:20800")
+    private HelloService helloService;
 
-    public void test(String name){
-        helloService.SayHello(name);
+    public String test(String name){
+        return helloService.SayHello(name);
     }
 }
