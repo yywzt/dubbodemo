@@ -8,16 +8,18 @@ import com.example.api.HelloService;
  * @date 2018/9/17 13:44
  * @desc
  */
-@Service(
-        version = "${demo.service.version}",
-        application = "${dubbo.application.id}",
-        protocol = "${dubbo.protocol.id}",
-        registry = "${dubbo.registry.id}"
-)
+//@Service(
+//        version = "${demo.service.version}",
+//        application = "${dubbo.application.id}",
+//        protocol = "${dubbo.protocol.id}",
+//        registry = "${dubbo.registry.id}"
+//)
+@Service
 public class HelloServiceImpl implements HelloService {
 
     @Override
     public String SayHello(String name) {
-        return "Hello : " + name;
+        throw new RuntimeException("hahahah");
+//        return "Hello : " + name;
     }
 }

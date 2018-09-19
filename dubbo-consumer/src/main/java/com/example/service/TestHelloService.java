@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.example.api.HelloService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,13 +13,19 @@ import org.springframework.stereotype.Service;
 @Service("testHelloService")
 public class TestHelloService{
 
-    @Reference(
-            version = "${demo.service.version}",
-            application = "${dubbo.application.id}")
-//    ,            url = "dubbo://localhost:20800")
+//    @Reference(
+//            version = "${demo.service.version}",
+//            application = "${dubbo.application.id}")
+////    ,            url = "dubbo://localhost:20800")
+    @Reference
     private HelloService helloService;
 
+    @HystrixCommand(fallbackMethod = "fail")
     public String test(String name){
         return helloService.SayHello(name);
+    }
+
+    public String fail(String name){
+        return "Hystrix Fallback Value!";
     }
 }
