@@ -1,23 +1,58 @@
-server:
-  port: 8086
+spring:
+  profiles:
+    active: provider2
 
+---
+spring:
+  profiles: provider1
 dubbo:
   application:
     #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
-    name: provider
-#    id: provider
+    name: provider1
   registry:
     #注册中心配置，用于配置连接注册中心相关信息。
 #    id: zookeeper
-    address: zookeeper://127.0.0.1:2181
-#    id: my-registry
-#    address: N/A
+#    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://139.199.179.164:2181
+    # 只订阅 不注册至注册中心
+#    register: false
   #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
-#  protocol:
-#    id: dubbo
-#    name: dubbo
-#    port: 20800
-#    status: server
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 20880
+    status: server
+  #服务暴露与发现消费所在的package
+  scan:
+    basePackages: com.example.service.impl
+  provider:
+    timeout: 5000
+    retries: 2
+
+#demo:
+#  service:
+#    version: 1.0.0
+
+---
+spring:
+  profiles: provider2
+dubbo:
+  application:
+    #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+    name: provider2
+  registry:
+    #注册中心配置，用于配置连接注册中心相关信息。
+    #    id: zookeeper
+    #    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://139.199.179.164:2181
+  # 只订阅 不注册至注册中心
+  #    register: false
+  #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 20881
+    status: server
   #服务暴露与发现消费所在的package
   scan:
     basePackages: com.example.service.impl

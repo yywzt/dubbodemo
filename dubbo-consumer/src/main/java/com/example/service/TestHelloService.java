@@ -13,11 +13,7 @@ import org.springframework.stereotype.Service;
 @Service("testHelloService")
 public class TestHelloService{
 
-//    @Reference(
-//            version = "${demo.service.version}",
-//            application = "${dubbo.application.id}")
-////    ,            url = "dubbo://localhost:20800")
-    @Reference
+    @Reference(loadbalance = "roundrobin")
     private HelloService helloService;
 
     @HystrixCommand(fallbackMethod = "fail")

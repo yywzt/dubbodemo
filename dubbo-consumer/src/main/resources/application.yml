@@ -7,14 +7,11 @@ dubbo:
 #    id: comsumer
     name: consumer
   #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
-#  protocol:
-#    id: dubbo
-#    name: dubbo
-#    port: 20800
   registry:
     #注册中心配置，用于配置连接注册中心相关信息。
 #    id: zookeeper
-    address: zookeeper://127.0.0.1:2181
+#    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://139.199.179.164:2181
 
 #demo:
 #  service:
